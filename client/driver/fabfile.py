@@ -751,10 +751,7 @@ def run_lhs():
         change_conf()
 
         # restart database
-        restart_database()
-        
-        if CONF['database_type'] == 'ESGYNDB': 
-            find_master_node() 
+        restart_database() 
         
         # create knob and metrics tables in ESGYNDB, help collector
         LOG.info('Start the collector helper, only works for esgyn, create the tables to store knobs and metrics in DB')
