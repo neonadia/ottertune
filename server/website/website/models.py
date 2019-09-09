@@ -97,8 +97,8 @@ class MetricManager(models.Manager):
     # Possible objective functions
     THROUGHPUT = 'throughput_txn_per_sec'
     THROUGHPUT_META = (THROUGHPUT, 'Throughput',
-                       'transactions / second',
-                       'txn/sec', 1, MORE_IS_BETTER)
+                       'transactions / mins',
+                       'txn/mins', 1, MORE_IS_BETTER)
 
     LATENCY_99 = '99th_lat_ms'
     LATENCY_99_META = (LATENCY_99, '99 Percentile Latency',

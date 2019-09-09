@@ -1,0 +1,24 @@
+[
+    {
+        "fields": {
+            "dbms": 10, 
+            "name": "global.throughput", 
+            "summary": "Transactions per second", 
+            "vartype": 3, 
+            "metric_type": 3, 
+            "scope": "global"
+        }, 
+        "model": "website.MetricCatalog"
+    }, 
+    {
+        "fields": {
+            "dbms": 10, 
+            "name": "global.latency", 
+            "summary": "99 percent latency", 
+            "vartype": 2, 
+            "metric_type": 3, 
+            "scope": "global"
+        }, 
+        "model": "website.MetricCatalog"
+    } 
+]

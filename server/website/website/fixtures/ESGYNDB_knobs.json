@@ -1,0 +1,268 @@
+[
+    {
+        "fields": {
+            "category": "ms.env",
+            "maxval": null,
+            "dbms": 10,
+            "name": "global.keep_alive",
+            "minval": null,
+            "default": "1",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "4",
+            "context": "",
+            "scope": "global",
+            "summary": "Set keep_alive to 1 to turn on.",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+    {
+        "fields": {
+            "category": "ms.env",
+            "maxval": "500",
+            "dbms": 10,
+            "name": "global.keep_idle",
+            "minval": "100",
+            "default": "200",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "2",
+            "context": "",
+            "scope": "global",
+            "summary": "Set idle time.",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+	    {
+        "fields": {
+            "category": "linux",
+            "maxval": "60",
+            "dbms": 10,
+            "name": "global.vm_swappiness",
+            "minval": "1",
+            "default": "60",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "2",
+            "context": "",
+            "scope": "global",
+            "summary": "Set linux swappniess ratio.",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+		{
+        "fields": {
+            "category": "hbase",
+            "maxval": "35",
+            "dbms": 10,
+            "name": "global.hbase_regionserver_handler_count",
+            "minval": "4",
+            "default": "28",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "2",
+            "context": "",
+            "scope": "global",
+            "summary": "Set regionserver handler count",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+		{
+        "fields": {
+            "category": "hbase",
+            "maxval": "128",
+            "dbms": 10,
+            "name": "global.hbase_regionserver_maxlogs",
+            "minval": "32",
+            "default": "32",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "2",
+            "context": "",
+            "scope": "global",
+            "summary": "regionserver maxlogs",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+		{
+        "fields": {
+            "category": "hbase",
+            "maxval": "5368709120",
+            "dbms": 10,
+            "name": "global.Java_Heap_Size_of_HBase_RegionServer_in_Bytes",
+            "minval": "1073741824",
+            "default": "2468606195",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "2",
+            "context": "",
+            "scope": "global",
+            "summary": "java heap size in bytes",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+	    {
+        "fields": {
+            "category": "CQD",
+            "maxval": null,
+            "dbms": 10,
+            "name": "global.HASH_JOINS",
+            "minval": null,
+            "default": "1",
+            "tunable": false,
+            "enumvals": null,
+            "vartype": "4",
+            "context": "",
+            "scope": "global",
+            "summary": "turn on/off hash joins.",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+		{
+        "fields": {
+            "category": "CQD",
+            "maxval": null,
+            "dbms": 10,
+            "name": "global.MERGE_JOINS",
+            "minval": null,
+            "default": "1",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "4",
+            "context": "",
+            "scope": "global",
+            "summary": "turn on/off merge joins.",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+		{
+        "fields": {
+            "category": "CQD",
+            "maxval": 50,
+            "dbms": 10,
+            "name": "global.DEFAULT_DEGREE_OF_PARALLELISM",
+            "minval": 1,
+            "default": 16,
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "2",
+            "context": "",
+            "scope": "global",
+            "summary": "degree of parallelism",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+	    {
+        "fields": {
+            "category": "CQD",
+            "maxval": null,
+            "dbms": 10,
+            "name": "global.MDAM_SCAN_METHOD",
+            "minval": null,
+            "default": "1",
+            "tunable": false,
+            "enumvals": null,
+            "vartype": "4",
+            "context": "",
+            "scope": "global",
+            "summary": "MDAM_SCAN_METHOD",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+	    {
+        "fields": {
+            "category": "CQD",
+            "maxval": null,
+            "dbms": 10,
+            "name": "global.SEMIJOIN_TO_INNERJOIN_TRANSFORMATION",
+            "minval": null,
+            "default": "1",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "4",
+            "context": "",
+            "scope": "global",
+            "summary": "SEMIJOIN_TO_INNERJOIN_TRANSFORMATION",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+	    {
+        "fields": {
+            "category": "CQD",
+            "maxval": null,
+            "dbms": 10,
+            "name": "global.TRAF_ALLOW_ESP_COLOCATION",
+            "minval": null,
+            "default": "1",
+            "tunable": false,
+            "enumvals": null,
+            "vartype": "4",
+            "context": "",
+            "scope": "global",
+            "summary": "TRAF_ALLOW_ESP_COLOCATION",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+	    {
+        "fields": {
+            "category": "CQD",
+            "maxval": null,
+            "dbms": 10,
+            "name": "global.ATTEMPT_ESP_PARALLELISM",
+            "minval": null,
+            "default": "1",
+            "tunable": true,
+            "enumvals": null,
+            "vartype": "4",
+            "context": "",
+            "scope": "global",
+            "summary": "ATTEMPT_ESP_PARALLELISM",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    },
+	    {
+        "fields": {
+            "category": "CQD",
+            "maxval": 10,
+            "dbms": 10,
+            "name": "global.PARALLEL_NUM_ESPS",
+            "minval": 0,
+            "default": 0,
+            "tunable": true,
+            "enumvals": "",
+            "vartype": "2",
+            "context": "",
+            "scope": "global",
+            "summary": "PARALLEL_NUM_ESPS",
+            "unit": "3",
+            "description": ""
+        },
+        "model": "website.KnobCatalog"
+    }
+]

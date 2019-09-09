@@ -1,0 +1,9 @@
+{
+  "database_type" : "ESGYNDB",
+  "database_url" : "jdbc:t4jdbc://nap015:23400,nap016:23400,nap017:23400/",
+  "username" : "db__root",
+  "password" : "traf123",
+  "upload_code" : "DEPRECATED",
+  "upload_url" : "DEPRECATED",
+  "workload_name" : "workload_name"
+}

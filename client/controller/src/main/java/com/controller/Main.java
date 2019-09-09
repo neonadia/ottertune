@@ -10,6 +10,7 @@ import com.controller.collectors.DBCollector;
 import com.controller.collectors.MySQLCollector;
 import com.controller.collectors.PostgresCollector;
 import com.controller.collectors.SAPHanaCollector;
+import com.controller.collectors.ESGYNDBCollector;
 import com.controller.types.JSONSchemaType;
 import com.controller.util.FileUtil;
 import com.controller.util.JSONUtil;
@@ -280,6 +281,11 @@ public class Main {
       case SAPHANA:
         collector =
             new SAPHanaCollector(
+                config.getDBURL(), config.getDBUsername(), config.getDBPassword());
+        break;
+      case ESGYNDB:
+        collector =
+            new ESGYNDBCollector(
                 config.getDBURL(), config.getDBUsername(), config.getDBPassword());
         break;
       default:

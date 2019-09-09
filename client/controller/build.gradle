@@ -14,11 +14,18 @@ test.testLogging { exceptionFormat "full"; events "failed", "passed", "skipped" 
 
 repositories {
     mavenCentral()
+    flatDir {
+       dirs 'lib'
+    }
+}
+
+configurations {
+   externalRunTimeJars 
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    runtime fileTree(dir: 'lib', include: '*.jar')
+
     compile group: 'net.sourceforge.collections', name: 'collections-generic', version: '4.01'
     compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
@@ -50,7 +57,14 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1201-jdbc41'
+
+    // esgynDB: Need to copy "jdbcT4.jar" into root directory
+    runtime fileTree(dir: '/root', include: '*.jar')
 }
+   
+
+//dependencies {compile files('lib/*.jar')}
+
 
 run {
     if (project.hasProperty("appArgs")) {

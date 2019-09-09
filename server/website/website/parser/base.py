@@ -23,11 +23,16 @@ class BaseParser(object, metaclass=ABCMeta):
 
     def __init__(self, dbms_id):
         self.dbms_id_ = dbms_id
+        print(dbms_id)
         knobs = KnobCatalog.objects.filter(dbms__pk=self.dbms_id_)
+        print("knobs")
+        print(knobs)
         self.knob_catalog_ = {k.name: k for k in knobs}
         self.tunable_knob_catalog_ = {k: v for k, v in
                                       list(self.knob_catalog_.items()) if v.tunable is True}
         metrics = MetricCatalog.objects.filter(dbms__pk=self.dbms_id_)
+        print("metrics")
+        print(metrics)
         self.metric_catalog_ = {m.name: m for m in metrics}
         self.numeric_metric_catalog_ = {m: v for m, v in
                                         list(self.metric_catalog_.items()) if
@@ -173,7 +178,16 @@ class BaseParser(object, metaclass=ABCMeta):
             else:
                 raise Exception(
                     'Unknown metric type for {}: {}'.format(name, metadata.metric_type))
-
+        print("target_objective")
+        print(target_objective) #debug
+        print('metric_data')
+        print(metric_data) #debug
+        print('self.numeric_metric_catalog.items')
+        print(list(self.numeric_metric_catalog_.items())) #debug
+        print('metrics')
+        print(metrics)
+        print('observation_time')
+        print(observation_time)
         if target_objective is not None and self.target_metric(target_objective) not in metric_data:
             raise Exception("Cannot find objective function")
 

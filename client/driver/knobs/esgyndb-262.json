@@ -1,0 +1,101 @@
+[
+    {
+        "name": "keep_alive",
+        "tuning_range": {
+            "minval": "0",
+            "maxval": "1"
+        },
+        "default": "1",
+        "type": "integer"
+    },
+    {
+        "name": "keep_idle",
+        "tuning_range": {
+            "minval": "100",
+            "maxval": "500"
+        },
+        "default": "200",
+        "type": "integer"
+    },
+	{
+        "name": "hbase_regionserver_handler_count",
+        "tuning_range": {
+            "minval": "4",
+            "maxval": "35"
+        },
+        "default": "20",
+        "type": "integer"
+    },
+    {
+        "name": "hbase_regionserver_maxlogs",
+        "tuning_range": {
+            "minval": "32",
+            "maxval": "128"
+        },
+        "default": "60",
+        "type": "integer"
+    },
+	{
+        "name": "Java_Heap_Size_of_HBase_RegionServer_in_Bytes",
+        "tuning_range": {
+            "minval": "1073741824",
+            "maxval": "5368709120"
+        },
+        "default": "2468606195",
+        "type": "integer"
+    },
+	{
+        "name": "DEFAULT_DEGREE_OF_PARALLELISM",
+        "tuning_range": {
+            "minval": "1",
+            "maxval": "50"
+        },
+        "default": "10",
+        "type": "integer"
+	},
+		{
+        "name": "MERGE_JOINS",
+        "tuning_range": {
+            "minval": "0",
+            "maxval": "1"
+        },
+        "default": "0",
+        "type": "integer"
+	},
+		{
+        "name": "vm_swappiness",
+        "tuning_range": {
+            "minval": "1",
+            "maxval": "60"
+        },
+        "default": "60",
+        "type": "integer"
+	},
+		{
+        "name": "SEMIJOIN_TO_INNERJOIN_TRANSFORMATION",
+        "tuning_range": {
+            "minval": "0",
+            "maxval": "1"
+        },
+        "default": "1",
+        "type": "integer"
+	},
+		{
+        "name": "ATTEMPT_ESP_PARALLELISMN",
+        "tuning_range": {
+            "minval": "0",
+            "maxval": "1"
+        },
+        "default": "1",
+        "type": "integer"
+	},
+		{
+        "name": "PARALLEL_NUM_ESPS",
+        "tuning_range": {
+            "minval": "0",
+            "maxval": "10"
+        },
+        "default": "0",
+        "type": "integer"
+	}
+]
