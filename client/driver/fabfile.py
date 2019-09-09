@@ -743,6 +743,9 @@ def run_lhs():
         # check disk usage
         if check_disk_usage() > MAX_DISK_USAGE:
             LOG.WARN('Exceeds max disk usage %s', MAX_DISK_USAGE)
+        
+        cmd = 'cp {} next_config'.format(sample)	
+        local(cmd)
 
         # remove oltpbench log and controller log
         clean_logs()
