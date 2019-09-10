@@ -12,6 +12,7 @@ import time
 import os.path
 import re
 import glob
+import statistics                 
 from multiprocessing import Process
 from fabric.api import (env, local, task, lcd)
 from fabric.state import output as fabric_output
@@ -196,56 +197,54 @@ def change_conf():
             if conf_list[i][0] in cqd_conf_catalog:
                 cqd_list.append(conf_list[i])
         with open('change_cqd.sql',"w") as cqd:
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'HASH_JOINS';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'MERGE_JOINS';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'DEFAULT_DEGREE_OF_PARALLELISM';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'MDAM_SCAN_METHOD';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'SEMIJOIN_TO_INNERJOIN_TRANSFORMATION';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'TRAF_ALLOW_ESP_COLOCATION';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'ATTEMPT_ESP_PARALLELISM';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'PARALLEL_NUM_ESPS';\n")
-            cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'OPTIMIZATION_LEVEL';\n")
             for knobs in cqd_list:
                 if knobs[0] == cqd_conf_catalog[0]:
-                                                                                                   
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'HASH_JOINS';\n")                                                                               
                     if knobs[1] == 1 or knobs[1] == 'on' or knobs[1] == '1':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('HASH_JOINS', 'ON', '1', '0');\n"); 
                     else:
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('HASH_JOINS', 'OFF', '0', '0');\n");
                 elif knobs[0] == cqd_conf_catalog[1]:
-                                                                                                    
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'MERGE_JOINS';\n")                                                                                
                     if knobs[1] == 1 or knobs[1] == 'on' or knobs[1] == '1':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('MERGE_JOINS', 'ON', '1', '0');\n");
                     else:
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('MERGE_JOINS', 'OFF', '0', '0');\n");
-                elif knobs[0] == cqd_conf_catalog[2]:                                                                                                                                          
+                elif knobs[0] == cqd_conf_catalog[2]:
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'DEFAULT_DEGREE_OF_PARALLELISM';\n")                
                     cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('DEFAULT_DEGREE_OF_PARALLELISM', '{}', 'integer', '0');\n".format(knobs[1]));
                 elif knobs[0] == cqd_conf_catalog[3]:
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'MDAM_SCAN_METHOD';\n")
                     if knobs[1] == 1 or knobs[1] == 'on' or knobs[1] == '1':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('MDAM_SCAN_METHOD', 'ON', '1', '0');\n");
                     else:
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('MDAM_SCAN_METHOD', 'OFF', '0', '0');\n");
-                elif knobs[0] == cqd_conf_catalog[4]:                   
+                elif knobs[0] == cqd_conf_catalog[4]:
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'SEMIJOIN_TO_INNERJOIN_TRANSFORMATION';\n")                
                     if knobs[1] == 1 or knobs[1] == 'on' or knobs[1] == '1':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('SEMIJOIN_TO_INNERJOIN_TRANSFORMATION', 'ON', '1', '0');\n");
                     else:
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('SEMIJOIN_TO_INNERJOIN_TRANSFORMATION', 'OFF', '0', '0');\n");
                 elif knobs[0] == cqd_conf_catalog[5]:
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'TRAF_ALLOW_ESP_COLOCATION';\n")
                     if knobs[1] == 1 or knobs[1] == 'on' or knobs[1] == '1':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('TRAF_ALLOW_ESP_COLOCATION', 'ON', '1', '0');\n");
                     else:
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('TRAF_ALLOW_ESP_COLOCATION', 'OFF', '0', '0');\n");
                 elif knobs[0] == cqd_conf_catalog[6]:
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'ATTEMPT_ESP_PARALLELISM';\n")
                     if knobs[1] == 1 or knobs[1] == 'on' or knobs[1] == '1':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('ATTEMPT_ESP_PARALLELISM', 'ON', '1', '0');\n");
                     else:
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('ATTEMPT_ESP_PARALLELISM', 'OFF', '0', '0');\n");
                 elif knobs[0] == cqd_conf_catalog[7]:
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'PARALLEL_NUM_ESPS';\n")
                     if knobs[1] == 0 or knobs[1] == '0':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('PARALLEL_NUM_ESPS', 'SYSTEM', '0', '0');\n");
                     else:
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('PARALLEL_NUM_ESPS', '{}', '{}', '0');\n".format(knobs[1],knobs[1]));
-                elif knobs[0] == cqd_conf_catalog[8]:              
+                elif knobs[0] == cqd_conf_catalog[8]:
+                    cqd.write('DELETE FROM "_MD_".defaults' + " WHERE ATTRIBUTE = 'OPTIMIZATION_LEVEL';\n")                
                     if knobs[1] == 0 or knobs[1] == '0':
                         cqd.write('INSERT INTO "_MD_".defaults VALUES' + " ('OPTIMIZATION_LEVEL', '0', '0', '0');\n");
                     elif knobs[1] == 1 or knobs[1] == '1':
@@ -271,8 +270,10 @@ def change_conf():
         driver.implicitly_wait(wait_time)
         #login to hbase setting page
         driver.get("http://localhost:7180/cmf/services/9/config")
+        time.sleep(1)
         elem = driver.find_element_by_name("j_username")
         elem.send_keys('admin')
+        time.sleep(1)
         elem = driver.find_element_by_name("j_password")
         elem.send_keys('admin')
         driver.find_element_by_xpath('//*[@name="submit"]').click()
@@ -523,8 +524,10 @@ def collector_helper_before_bench():
         driver.implicitly_wait(wait_time)
         #login to hbase setting page
         driver.get("http://localhost:7180/cmf/services/9/config")
+        time.sleep(1)
         elem = driver.find_element_by_name("j_username")
         elem.send_keys('admin')
+        time.sleep(1)
         elem = driver.find_element_by_name("j_password")
         elem.send_keys('admin')
         driver.find_element_by_xpath('//*[@name="submit"]').click()
@@ -640,10 +643,10 @@ def lhs_samples(count=10):
     local(cmd)
 
 @task
-def wait_until_benchmarkfinish():
+def wait_until_benchmarkfinish(extra_time=120):
     if CONF['database_type'] == 'ESGYNDB':
         tree = et.parse("/home/trafinstall/oltpbench/config/esgyn_tpcc_config.xml")
-        waittime = int(tree.find('.//warmup').text) + int(tree.find('.//time').text) + 120
+        waittime = int(tree.find('.//warmup').text) + int(tree.find('.//time').text) + int(extra_time)
         LOG.info('OLTPBenchmark will be finished in {} secs'.format(waittime))
         time.sleep(waittime)
         LOG.info('Finished')            
@@ -743,7 +746,7 @@ def run_lhs():
         # check disk usage
         if check_disk_usage() > MAX_DISK_USAGE:
             LOG.WARN('Exceeds max disk usage %s', MAX_DISK_USAGE)
-        
+
         cmd = 'cp {} next_config'.format(sample)	
         local(cmd)
 
@@ -754,7 +757,7 @@ def run_lhs():
         change_conf()
 
         # restart database
-        restart_database() 
+        restart_database()
         
         # create knob and metrics tables in ESGYNDB, help collector
         LOG.info('Start the collector helper, only works for esgyn, create the tables to store knobs and metrics in DB')
@@ -798,7 +801,68 @@ def run_lhs():
 
         # upload result
         upload_result()
+@task
+def oltp_stable_tests(loops = 10):
+    
+    oltpresults = []
+    
+    # give a random setting 
+    lhs_samples(5)
+    cmd = 'cp configs/config_0 next_config'	
+    local(cmd)
+    change_conf()
 
+    # dump database if it's not done before.
+    dump = dump_database()
+
+    for i in range(int(loops)):
+        LOG.info('Start {}th loop'.format(i+1))
+
+        # free cache
+        free_cache()
+
+        if RELOAD_INTERVAL > 0:
+            if i % RELOAD_INTERVAL == 0:
+                if i == 0 and dump is False:
+                    restore_database()
+                elif i > 0:
+                    restore_database()
+
+        # check memory usage
+        check_memory_usage()
+
+        # check disk usage
+        if check_disk_usage() > MAX_DISK_USAGE:
+            LOG.WARN('Exceeds max disk usage %s', MAX_DISK_USAGE)
+
+        # remove oltpbench log and controller log
+        clean_logs()
+
+        # restart database
+        restart_database()
+
+        # run oltpbench as a background job
+        run_oltpbench_bg()
+        LOG.info('Run OLTP-Bench')
+        
+        # wait until the benchmark finished
+        wait_until_benchmarkfinish()
+                
+        LOG.info('Print oltp log file')
+        check_oltp_error()
+        
+        with open("oltp.log","r") as log:
+            lines = log.readlines()
+            oltpresults.append(float(re.findall('[\d]+\.[\d]+',lines[-9])[0]))
+            LOG.info("In {}th loop, the throughput is {} TPS".format(i,oltpresults[-1]))
+    
+    mean_oltp =  statistics.mean(oltpresults)
+    std_oltp = statistics.stdev(oltpresults)
+    std_oltp_ratio = std_oltp/mean_oltp*100
+    max_diff_ratio = (max(oltpresults)-min(oltpresults))/mean_oltp*100
+    LOG.info("The STD is {} TPS and STD ratio is {} %".format(std_oltp,std_oltp_ratio))
+    LOG.info("The average result is {} TPS".format(mean_oltp))
+    LOG.info("The min/max difference ratio is {} %".format(max_diff_ratio))
 
 @task
 def run_loops(max_iter=1):
